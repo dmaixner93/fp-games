@@ -1,12 +1,12 @@
-const canvas = document.getElementById('canvas')
-const ctx = canvas.getContext('2d')
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
 
 // Mutable state
-let state = initialState()
+let state = initialState();
 
 // Position helpers
-const x = c => Math.round(c * canvas.width / state.cols)
-const y = r => Math.round(r * canvas.height / state.rows)
+const x = c => Math.round(c * canvas.width / state.cols);
+const y = r => Math.round(r * canvas.height / state.rows);
 
 // Game loop draw
 const draw = () => {
@@ -27,18 +27,18 @@ const draw = () => {
     ctx.fillStyle = 'rgb(255,0,0)'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
   }
-}
+};
 
 // Game loop update
 const step = t1 => t2 => {
   if (t2 - t1 > 100) {
-    state = next(state)
-    draw()
-    window.requestAnimationFrame(step(t2))
+    state = next(state);
+    draw();
+    window.requestAnimationFrame(step(t2));
   } else {
-    window.requestAnimationFrame(step(t1))
+    window.requestAnimationFrame(step(t1));
   }
-}
+};
 
 // Key events
 window.addEventListener('keydown', e => {
@@ -48,7 +48,8 @@ window.addEventListener('keydown', e => {
     case 's': case 'k': case 'ArrowDown':  state = enqueue(state, SOUTH); break
     case 'd': case 'l': case 'ArrowRight': state = enqueue(state, EAST);  break
   }
-})
+});
 
 // Main
-draw(); window.requestAnimationFrame(step(0))
+draw(); 
+window.requestAnimationFrame(step(0));
